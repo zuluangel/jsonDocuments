@@ -1,0 +1,130 @@
+[
+    {
+        "cod_depto": "91",
+        "nom_depto": "AMAZONAS"
+    },
+    {
+        "cod_depto": "05",
+        "nom_depto": "ANTIOQUIA"
+    },
+    {
+        "cod_depto": "81",
+        "nom_depto": "ARAUCA"
+    },
+    {
+        "cod_depto": "88",
+        "nom_depto": "ARCHIPIELAGO DE SAN ANDRES"
+    },
+    {
+        "cod_depto": "08",
+        "nom_depto": "ATLANTICO"
+    },
+    {
+        "cod_depto": "11",
+        "nom_depto": "BOGOTA D.C."
+    },
+    {
+        "cod_depto": "13",
+        "nom_depto": "BOLIVAR"
+    },
+    {
+        "cod_depto": "15",
+        "nom_depto": "BOYACA"
+    },
+    {
+        "cod_depto": "17",
+        "nom_depto": "CALDAS"
+    },
+    {
+        "cod_depto": "18",
+        "nom_depto": "CAQUETA"
+    },
+    {
+        "cod_depto": "85",
+        "nom_depto": "CASANARE"
+    },
+    {
+        "cod_depto": "19",
+        "nom_depto": "CAUCA"
+    },
+    {
+        "cod_depto": "20",
+        "nom_depto": "CESAR"
+    },
+    {
+        "cod_depto": "27",
+        "nom_depto": "CHOCO"
+    },
+    {
+        "cod_depto": "23",
+        "nom_depto": "CORDOBA"
+    },
+    {
+        "cod_depto": "25",
+        "nom_depto": "CUNDINAMARCA"
+    },
+    {
+        "cod_depto": "94",
+        "nom_depto": "GUAINIA"
+    },
+    {
+        "cod_depto": "95",
+        "nom_depto": "GUAVIARE"
+    },
+    {
+        "cod_depto": "41",
+        "nom_depto": "HUILA"
+    },
+    {
+        "cod_depto": "44",
+        "nom_depto": "GUAJIRA"
+    },
+    {
+        "cod_depto": "47",
+        "nom_depto": "MAGDALENA"
+    },
+    {
+        "cod_depto": "50",
+        "nom_depto": "META"
+    },
+    {
+        "cod_depto": "52",
+        "nom_depto": "NARI�O"
+    },
+    {
+        "cod_depto": "54",
+        "nom_depto": "NORTE DE SANTANDER"
+    },
+    {
+        "cod_depto": "86",
+        "nom_depto": "PUTUMAYO"
+    },
+    {
+        "cod_depto": "63",
+        "nom_depto": "QUINDIO"
+    },
+    {
+        "cod_depto": "66",
+        "nom_depto": "RISARALDA"
+    },
+    {
+        "cod_depto": "68",
+        "nom_depto": "SANTANDER"
+    },
+    {
+        "cod_depto": "73",
+        "nom_depto": "TOLIMA"
+    },
+    {
+        "cod_depto": "76",
+        "nom_depto": "VALLE DEL CAUCA"
+    },
+    {
+        "cod_depto": "97",
+        "nom_depto": "VAUPES"
+    },
+    {
+        "cod_depto": "99",
+        "nom_depto": "VICHADA"
+    }
+]

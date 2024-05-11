@@ -1,0 +1,176 @@
+-----planos.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="planos.css">
+    <title>Archivo JSON</title>
+</head>
+<body>
+    <h1>Cargar JSON y Mostrar en Lista Desplegable</h1>
+    <input type="file" id="file-input">
+    <button onclick="loadAndDisplayJSON()">Cargar JSON</button>
+
+    <div id="agregar-depto-container">
+        <input type="text" id="cod-depto" placeholder="Código de Departamento">
+        <input type="text" id="nom-depto" placeholder="Nombre de Departamento">
+        <button onclick="agregarDepartamento()">Agregar Departamento</button>
+    </div>
+
+    <select id="departamentos"></select>
+
+    <form id="save-form" action="#" method="post" onsubmit="return saveJSON()">
+        <textarea id="json-data" name="json-data" rows="10" cols="50" style="display: none;"></textarea>
+        <button type="submit">Guardar Archivo JSON</button>
+    </form>
+
+    <script src="planos.js"></script>
+</body>
+</html>
+
+
+
+------planos.js
+let departamentos = [];
+
+function cargarDepartamentos() {
+    const selectDepartamentos = document.getElementById('departamentos');
+    selectDepartamentos.innerHTML = ''; // Limpiar la lista desplegable
+
+    departamentos.forEach(function(depto) {
+        var option = document.createElement('option');
+        option.text = depto.nom_depto;
+        option.value = depto.cod_depto;
+        selectDepartamentos.add(option);
+    });
+}
+
+function loadAndDisplayJSON() {
+    const fileInput = document.getElementById('file-input');
+    const file = fileInput.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+            const content = event.target.result;
+            const jsonContent = JSON.parse(content);
+            departamentos = jsonContent; // Actualizar la lista de departamentos
+            cargarDepartamentos(); // Actualizar la lista desplegable
+            document.getElementById('json-data').value = content;
+        };
+
+        reader.readAsText(file);
+    } else {
+        alert('Por favor, seleccione un archivo JSON.');
+    }
+}
+
+function agregarDepartamento() {
+    const codDeptoInput = document.getElementById('cod-depto');
+    const nomDeptoInput = document.getElementById('nom-depto');
+
+    const codDepto = codDeptoInput.value.trim();
+    const nomDepto = nomDeptoInput.value.trim();
+
+    if (codDepto && nomDepto) {
+        departamentos.push({ cod_depto: codDepto, nom_depto: nomDepto });
+        cargarDepartamentos(); // Actualizar la lista desplegable con el nuevo departamento
+        codDeptoInput.value = ''; // Limpiar los campos de entrada
+        nomDeptoInput.value = '';
+    } else {
+        alert('Por favor, complete los campos Código de Departamento y Nombre de Departamento.');
+    }
+}
+
+function saveJSON() {
+    const jsonData = JSON.stringify(departamentos, null, 2);
+    const blob = new Blob([jsonData], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'departamentos.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    return false;
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    cargarDepartamentos(); // Cargar los departamentos al cargar la página
+});
+
+
+
+
+
+
+----planos.css
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: #333;
+}
+
+input[type="file"],
+input[type="text"],
+button,
+select {
+    margin: 5px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+button {
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+select {
+    width: 300px;
+}
+
+form {
+    margin-top: 20px;
+}
+
+textarea {
+    display: block;
+    margin: 10px 0;
+    width: 100%;
+}
+
+#agregar-depto-container {
+    margin-top: 20px;
+}
+
+#agregar-depto-container input[type="text"],
+#agregar-depto-container button {
+    margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

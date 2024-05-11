@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Archivo JSON</title>
+</head>
+<body>
+    <h1>Cargar JSON y Mostrar en Lista Desplegable</h1>
+    <input type="file" id="file-input">
+    <button onclick="loadAndDisplayJSON()">Cargar JSON</button>
+
+    <div id="agregar-depto-container">
+        <input type="text" id="cod-depto" placeholder="Código de Departamento">
+        <input type="text" id="nom-depto" placeholder="Nombre de Departamento">
+        <button onclick="agregarDepartamento()">Agregar Departamento</button>
+    </div>
+
+    <select id="departamentos"></select>
+
+    <form id="save-form" action="#" method="post" onsubmit="return saveJSON()">
+        <textarea id="json-data" name="json-data" rows="10" cols="50" style="display: none;"></textarea>
+        <button type="submit">Guardar Archivo JSON</button>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>
