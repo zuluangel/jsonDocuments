@@ -7,22 +7,27 @@
     <title>Archivo JSON</title>
 </head>
 <body>
-    <h1>Cargar JSON y Mostrar en Lista Desplegable</h1>
-    <input type="file" id="file-input">
-    <button onclick="loadAndDisplayJSON()">Cargar JSON</button>
+    <main>
+        <section>
+            <h1>Cargar JSON y Mostrar en Lista Desplegable</h1>
+            <label for="fileInput">Please add one file</label>
+            <input type="file" id="fileInput" accept=".txt">
+            <button id="loadJsonBtn">Cargar JSON</button>
 
-    <div id="agregar-tipodoc-container">
-        <input type="text" id="tipoDoc" placeholder="Tipo Documento">
-        <input type="text" id="desDoc" placeholder="Descripción del tipo Documento">
-        <button onclick="agregarDocument()">Agregar Documento</button>
-    </div>
+            <div class="add-document-container">
+                <input type="text" aria-label="Tipo Documento" id="tipoDoc" placeholder="Tipo Documento">
+                <input type="text" aria-label="Descripción del tipo Documento" id="desDoc" placeholder="Descripción del tipo Documento">
+                <button id="addDocumentBtn">Agregar Documento</button>
+            </div>
 
-    <select id="documentos"></select>
+            <select id="documentos"></select>
 
-    <form id="save-form" action="#" method="post" onsubmit="return saveJSON()">
-        <textarea id="json-data" name="json-data" rows="10" cols="50" style="display: none;"></textarea>
-        <button type="submit">Guardar Archivo JSON</button>
-    </form>
+            <form class="save-form" action="#" method="post">
+                <textarea id="jsonData" name="json-data" rows="10" cols="50" style="display: none;"></textarea>
+                <button type="submit">Guardar Archivo JSON</button>
+            </form>
+        </section>
+    </main>
 
     <script src="script2.js"></script>
 </body>

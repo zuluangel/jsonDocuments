@@ -1,79 +1,86 @@
-let documentos = [];
-
-function cargarDocument() {
-    alert('Cargando')
+document.addEventListener('DOMContentLoaded', () => {
     const selectDocument = document.getElementById('documentos');
-    selectDocument.innerHTML = ''; // Limpiar la lista desplegable
+    const fileInput = document.getElementById('fileInput');
+    const tipoDocInput = document.getElementById('tipoDoc');
+    const desDocInput = document.getElementById('desDoc');
+    const addDocumentBtn = document.getElementById('addDocumentBtn');
 
-    documentos.forEach(function(dcto) {
-        var option = document.createElement('option');
-        option.text = dcto.tipodoc;
-        option.value = dcto.des_tipodoc;
-        selectDocument.add(option);
-    });
-}
+    let documentos = [];
 
-function loadAndDisplayJSON() {
-    const fileInput = document.getElementById('file-input');
-    const file = fileInput.files[0];
+    const cargarDocument = () => {
+        selectDocument.innerHTML = ''; // Limpiar la lista desplegable
 
-    if (file) {
-        const reader = new FileReader();
+        documentos.forEach((docum) => {
+            const option = document.createElement('option');
+            option.text = docum.tipodoc;
+            option.value = docum.des_tipodoc;
+            selectDocument.add(option);
+        });
+    };
 
-        reader.onload = function(event) {
-            const content = event.target.result;
-            const jsonContent = JSON.parse(content);
-            documentos = jsonContent; // Actualizar la lista de departamentos
-            cargarDocument(); // Actualizar la lista desplegable
-            document.getElementById('json-data').value = content;
-        };
+    const loadAndPlayJSON = () => {
+        const file = fileInput.files[0];
 
-        reader.readAsText(file);
-    } else {
-        alert('Por favor, seleccione un archivo JSON.');
-    }
-}
+        if (file) {
+            const reader = new FileReader();
 
-function agregarDocument() {
-    const tipoDocumento = document.getElementById('tipoDoc');
-    const desDocumento = document.getElementById('desDoc');
+            reader.onload = function(e) {
+                const content = e.target.result;
+                try {
+                    const jsonContent = JSON.parse(content);
+                    documentos = jsonContent;
+                    cargarDocument();
+                    document.getElementById('jsonData').value = JSON.stringify(jsonContent, null, 2);
+                } catch (error) {
+                    alert('El archivo seleccionado no es un JSON válido.');
+                }
+            };
 
-    const tipoDoc = tipoDocumento.value.trim();
-    const desDoc = desDocumento.value.trim();
-
-    let existe = documentos.find(elem => elem.cod_depto === codDepto);
-
-    if (existe === "undefined"){
-        if (tipodoc && desDoc) {
-            documentos.push({ tipodoc: tipoDoc, des_tipodoc: desDoc });
-            cargarDocument(); // Actualizar la lista desplegable con el nuevo departamento
-            tipoDocumento.value = ''; // Limpiar los campos de entrada
-            desDocumento.value = '';
+            reader.readAsText(file);
         } else {
-            alert('Por favor, complete los campos Tipo Doc y Descripción Doc.');
+            alert('Por favor, seleccione un archivo JSON.');
         }
-    }else{
-        alert(`It exist ${existe.des_tipodoc}`)
-    }
+    };
 
-  
-}
+    const agregarDocument = () => {
+        const tipoDoc = tipoDocInput.value.toUpperCase().trim();
+        const desDoc = desDocInput.value.trim();
 
-function saveJSON() {
-    const jsonData = JSON.stringify(documentos, null, 2);
-    const blob = new Blob([jsonData], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
+        let exist = documentos.find(elem => elem.tipodoc === tipoDoc)
 
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'documentos.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+        if (exist === 'undefined') {
+            if (tipoDoc && desDoc) {
+                documentos.push({ tipodoc: tipoDoc, des_tipodoc: desDoc });
+                cargarDocument();
+                tipoDocInput.value = '';
+                desDocInput.value = '';
+            } else {
+                alert('Por favor, complete los campos Tipo Doc y Descripción Doc.');
+            }
+            
+        } else {
+            alert(`This document type already exist as: ${exist.des_tipodoc}`)
+        }
+    };
 
-    return false;
-}
+    const savingJSON = () => {
+        const jsonData = JSON.stringify(documentos, null, 2);
+        const blob = new Blob([jsonData], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
 
-document.addEventListener("DOMContentLoaded", function() {
-    cargarDocument(); // Cargar los departamentos al cargar la página
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'documentos.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        return false;
+    };
+
+    fileInput.addEventListener('change', loadAndPlayJSON);
+    addDocumentBtn.addEventListener('click', agregarDocument);
+    document.querySelector('.save-form').addEventListener('submit', savingJSON);
+
+    loadTiposDocJSON();
 });
