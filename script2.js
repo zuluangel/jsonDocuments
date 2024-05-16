@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tipoDocInput = document.getElementById('tipoDoc');
     const desDocInput = document.getElementById('desDoc');
     const addDocumentBtn = document.getElementById('addDocumentBtn');
+    const loadJsonBtn = document.getElementById('loadJsonBtn')
 
     let documentos = [];
 
@@ -35,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert('El archivo seleccionado no es un JSON válido.');
                 }
             };
-
             reader.readAsText(file);
         } else {
             alert('Por favor, seleccione un archivo JSON.');
@@ -43,12 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const agregarDocument = () => {
+        
         const tipoDoc = tipoDocInput.value.toUpperCase().trim();
         const desDoc = desDocInput.value.trim();
 
         let exist = documentos.find(elem => elem.tipodoc === tipoDoc)
 
-        if (exist === 'undefined') {
+        if (typeof exist === 'undefined') {
             if (tipoDoc && desDoc) {
                 documentos.push({ tipodoc: tipoDoc, des_tipodoc: desDoc });
                 cargarDocument();
@@ -56,8 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 desDocInput.value = '';
             } else {
                 alert('Por favor, complete los campos Tipo Doc y Descripción Doc.');
-            }
-            
+            }            
         } else {
             alert(`This document type already exist as: ${exist.des_tipodoc}`)
         }
@@ -80,7 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fileInput.addEventListener('change', loadAndPlayJSON);
     addDocumentBtn.addEventListener('click', agregarDocument);
-    document.querySelector('.save-form').addEventListener('submit', savingJSON);
+    document.querySelector('.save-form').addEventListener('submit', savingJSON); 
+    loadJsonBtn.addEventListener('click', cargarDocument)   
 
-    loadTiposDocJSON();
+    // loadTiposDocJSON();
 });

@@ -1,0 +1,6 @@
+M,Masculino
+F,Femenino
+L,Lesbiana
+G,Gay
+B,Bisexual
+T,Transexual

@@ -1,0 +1,5 @@
+CC,C�dula Ciudadania
+TI ,Tarjeta Identidad
+CE,C�dula Extranjeria
+PS,Pasaporte
+NIT,N.I.T.

@@ -1,0 +1,7 @@
+20000,Producci�n
+25000,Contabilidad2
+30000,Sistemas
+35000,Recursos Humanos
+40000,Gerencia
+45000,Ventas-Mercadeo
+50000,Servicios generales
